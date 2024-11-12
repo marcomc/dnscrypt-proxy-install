@@ -32,7 +32,7 @@ After installing cloudflared, you need to configure Pi-hole to use it as a DNS-o
 
 1. Open the Pi-hole admin interface.
 2. Go to **Settings** > **DNS**.
-3. Under **Upstream DNS Servers**, select **Custom 1 (IPv4)** and enter `127.0.0.1#55`.
+3. Under **Upstream DNS Servers**, select **Custom 1 (IPv4)** and enter `127.0.0.1#5055`.
 4. Scroll down and click **Save**.
 
 ## Uninstalling cloudflared
