@@ -35,6 +35,13 @@ After installing cloudflared, you need to configure Pi-hole to use it as a DNS-o
 3. Under **Upstream DNS Servers**, select **Custom 1 (IPv4)** and enter `127.0.0.1#5055`.
 4. Scroll down and click **Save**.
 
+## Testing DNSCrypt Proxy
+
+```sh
+sudo systemctl status dnscrypt-proxy
+dig @localhost -p 5055 txt debug.opendns.com
+```
+
 ## Uninstalling cloudflared
 
 If you need to uninstall cloudflared, you can use the `--uninstall` option with the script:
