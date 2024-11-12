@@ -70,6 +70,7 @@ install_dnscrypt_proxy() {
     curl -L "${DOWNLOAD_URL}" -o dnscrypt-proxy.tar.gz || error "Failed to download dnscrypt-proxy"
     tar -xzf dnscrypt-proxy.tar.gz || error "Failed to extract dnscrypt-proxy"
     mv "linux-${ARCH}" "${DNSCrypt_dir}" || error "Failed to move dnscrypt-proxy to ${DNSCrypt_dir}"
+    cp "${DNSCrypt_dir}"/dnscrypt-proxy /usr/local/bin/dnscrypt-proxy || error "Failed to copy dnscrypt-proxy binary to /usr/local/bin/"
     rm -rf "linux-${ARCH}" dnscrypt-proxy.tar.gz
 }
 
@@ -91,8 +92,7 @@ configure_dnscrypt_proxy() {
 # Function to create a systemd service for dnscrypt-proxy
 create_systemd_service() {
     echo "Creating systemd service for dnscrypt-proxy"
-    "${DNSCrypt_dir}"/dnscrypt-proxy -service install || error "Failed to create systemd service"
-
+    dnscrypt-proxy -config "${DNSCrypt_dir}/dnscrypt-proxy.toml" -service install || error "Failed to create systemd service"
 }
 
 # Function to enable and start the dnscrypt-proxy service
@@ -119,7 +119,7 @@ uninstall_dnscrypt_proxy() {
     echo "Disabling dnscrypt-proxy service"
     systemctl disable dnscrypt-proxy || error "Failed to disable dnscrypt-proxy service"
     echo "Removing dnscrypt-proxy systemd service file"
-    rm /etc/systemd/system/dnscrypt-proxy.service || error "Failed to remove dnscrypt-proxy systemd service file"
+    dnscrypt-proxy -service uninstall || error "Failed to remove dnscrypt-proxy systemd service file"
     echo "Removing ${DNSCrypt_dir} directory"
     rm -rf "${DNSCrypt_dir}" || error "Failed to remove ${DNSCrypt_dir} directory"
     echo "Removing dnscrypt-proxy binary"
@@ -146,7 +146,7 @@ if ! command -v dnscrypt-proxy &> /dev/null; then
     install_dnscrypt_proxy
     # Verify the installation
     echo "Verifying dnscrypt-proxy installation"
-   "${DNSCrypt_dir}"/dnscrypt-proxy -version || error "dnscrypt-proxy verification failed"
+    dnscrypt-proxy -version || error "dnscrypt-proxy verification failed"
 else
     echo "dnscrypt-proxy is already installed"
 fi
