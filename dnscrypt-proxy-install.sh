@@ -61,10 +61,11 @@ install_curl() {
 # Function to install dnscrypt-proxy
 install_dnscrypt_proxy() {
     echo "Installing dnscrypt-proxy"
-    URL="https://github.com/DNSCrypt/dnscrypt-proxy/releases/download/latest"
-    VERSION=$(curl -s https://api.github.com/repos/DNSCrypt/dnscrypt-proxy/releases/latest | grep -Po '"tag_name": "\K.*?(?=")')
-    echo "${URL}/dnscrypt-proxy-linux_${ARCH}-${VERSION}.tar.gz"
-    curl -L "${URL}/dnscrypt-proxy-linux_${ARCH}-${VERSION}.tar.gz" -o dnscrypt-proxy.tar.gz || error "Failed to download dnscrypt-proxy"
+    LATEST_URL="https://github.com/DNSCrypt/dnscrypt-proxy/releases/download/latest"
+    VERSION=$(curl -s "${LATEST_URL}" | grep -Po '"tag_name": "\K.*?(?=")')
+    DOWNLOAD_URL="https://github.com/DNSCrypt/dnscrypt-proxy/releases/download/${VERSION}/dnscrypt-proxy-linux_${ARCH}-${VERSION}.tar.gz"
+    echo "DOWNLOAD_URL: ${DOWNLOAD_URL}"
+    curl -L "${DOWNLOAD_URL}" -o dnscrypt-proxy.tar.gz || error "Failed to download dnscrypt-proxy"
     tar -xzf dnscrypt-proxy.tar.gz || error "Failed to extract dnscrypt-proxy"
     mv "linux-${ARCH}" "${DNSCrypt_dir}" || error "Failed to move dnscrypt-proxy to ${DNSCrypt_dir}"
     rm -rf "linux-${ARCH}" dnscrypt-proxy.tar.gz
