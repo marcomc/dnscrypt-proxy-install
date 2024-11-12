@@ -38,6 +38,7 @@ esac
 echo "Detected architecture: ${ARCH}"
 
 DNSCrypt_dir=/opt/dnscrypt-proxy
+EXAMPLE_CONFIG_URL="https://raw.githubusercontent.com/marcomc/dnscrypt-proxy-install/refs/heads/main/example-dnscrypt-proxy.toml"
 
 # Function to install curl based on the package manager
 install_curl() {
@@ -86,7 +87,7 @@ configure_dnscrypt_proxy() {
         cp "${DNSCrypt_dir}/dnscrypt-proxy.toml" "${DNSCrypt_dir}/dnscrypt-proxy.toml.bak.${TIMESTAMP}" || error "Failed to create backup of existing config file"
         echo "Backup of existing config file created with timestamp ${TIMESTAMP}"
     fi
-    cp "${DNSCrypt_dir}/example-dnscrypt-proxy.toml" "${DNSCrypt_dir}/dnscrypt-proxy.toml" || error "Failed to configure dnscrypt-proxy"
+    curl -L "${EXAMPLE_CONFIG_URL}" -o "${DNSCrypt_dir}/dnscrypt-proxy.toml" || error "Failed to download dnscrypt-proxy example config file"
 }
 
 # Function to create a systemd service for dnscrypt-proxy
