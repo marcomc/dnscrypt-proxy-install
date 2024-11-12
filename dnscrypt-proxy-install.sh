@@ -63,7 +63,7 @@ install_dnscrypt_proxy() {
     echo "Installing dnscrypt-proxy"
     LATEST_URL="https://api.github.com/repos/DNSCrypt/dnscrypt-proxy/releases/latest"
     echo "Fetching latest version from ${LATEST_URL}"
-    VERSION=$(curl -s "${LATEST_URL} | grep -Po '"tag_name": "\K.*?(?=")')
+    VERSION=$(curl -s https://api.github.com/repos/DNSCrypt/dnscrypt-proxy/releases/latest | grep -Po '"tag_name": "\K.*?(?=")')
     echo "Latest version: ${VERSION}"
     DOWNLOAD_URL="https://github.com/DNSCrypt/dnscrypt-proxy/releases/download/${VERSION}/dnscrypt-proxy-linux_${ARCH}-${VERSION}.tar.gz"
     echo "DOWNLOAD_URL: ${DOWNLOAD_URL}"
