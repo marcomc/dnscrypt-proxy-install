@@ -1,4 +1,4 @@
-server_names = ['meganerd','meganerd-ipv6','anon-cs-milan','dct-nl1','sth-dnscrypt-se-ipv6']
+# server_names = []
 
 listen_addresses = ['[::]:55']
 
@@ -90,14 +90,10 @@ fragments_blocked = ['cisco', 'cisco-ipv6', 'cisco-familyshield', 'cisco-familys
 
 [anonymized_dns]
 
- routes = [
-    { server_name='meganerd', via=['anon-cs-berlin', 'anon-cs-de', 'anon-ams', 'anon-cs-austria'] },
-    { server_name='anon-cs-milan', via=['anon-meganerd', 'anon-scaleway-ams'] },
-    { server_name='dnscrypt-ch-blahdns-ipv4', via=['anon-cs-berlin', 'anon-scaleway-ams'] },
-    { server_name='dct-nl1', via=['anon-meganerd', 'anon-scaleway-ams'] },
-    { server_name='sth-dnscrypt-se-ipv6', via=['anon-meganerd-ipv6', 'anon-scaleway-ams-ipv6'] },
-    { server_name='meganerd-ipv6', via=['anon-acsacsar-ams-ipv6', 'anon-dnscrypt.uk-ipv6'] }
- ]
+# routes = [
+#    { server_name='meganerd', via=['anon-cs-berlin', 'anon-cs-de', 'anon-ams', 'anon-cs-austria'] },
+#    { server_name='anon-cs-milan', via=['anon-meganerd', 'anon-scaleway-ams'] },
+# ]
 
 
 skip_incompatible = true
