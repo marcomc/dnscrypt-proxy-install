@@ -146,7 +146,7 @@ if ! command -v dnscrypt-proxy &> /dev/null; then
     install_dnscrypt_proxy
     # Verify the installation
     echo "Verifying dnscrypt-proxy installation"
-    dnscrypt-proxy -version || error "dnscrypt-proxy verification failed"
+   "${DNSCrypt_dir}"/dnscrypt-proxy -version || error "dnscrypt-proxy verification failed"
 else
     echo "dnscrypt-proxy is already installed"
 fi
