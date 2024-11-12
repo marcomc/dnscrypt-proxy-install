@@ -15,6 +15,8 @@ require_nofilter = true
 
 disabled_server_names = []
 
+# This is required to make `anonymized_dns` routes to work
+# (It shouldn't but it is) 
 force_tcp = true
 
 timeout = 5000
