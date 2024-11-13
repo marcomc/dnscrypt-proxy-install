@@ -1,4 +1,4 @@
-server_names = ['dnscry.pt-amsterdam02-ipv4','dnscry.pt-anon-copenhagen-ipv4']
+server_names = ['quad9-dnscrypt-ip4-filter-ecs-pri','quad9-dnscrypt-ip4-filter-pri', 'dnscry.pt-amsterdam02-ipv4','dnscry.pt-anon-copenhagen-ipv4']
 
 listen_addresses = ['[::]:5055']
 
@@ -11,12 +11,10 @@ odoh_servers = false
 
 require_dnssec = true
 require_nolog = true
-require_nofilter = true
+require_nofilter = false
 
 disabled_server_names = []
 
-# This is required to make `anonymized_dns` routes to work
-# (It shouldn't but it is) 
 force_tcp = true
 
 timeout = 5000
@@ -103,6 +101,8 @@ fragments_blocked = ['cisco', 'cisco-ipv6', 'cisco-familyshield', 'cisco-familys
 [anonymized_dns]
 
 routes = [
+   { server_name='quad9-dnscrypt-ip4-filter-ecs-pri', via=['anon-scaleway-ams','anon-sth-se','anon-v.dnscrypt.uk-ipv4'] },
+   { server_name='quad9-dnscrypt-ip4-filter-pri', via=['anon-scaleway-ams','anon-sth-se','anon-v.dnscrypt.uk-ipv4'] },
    { server_name='dnscry.pt-anon-copenhagen-ipv4', via=['dnscry.pt-anon-madrid-ipv4','dnscry.pt-anon-munich-ipv4'] },
    { server_name='dnscry.pt-amsterdam02-ipv4', via=['dnscry.pt-anon-madrid-ipv4','dnscry.pt-anon-munich-ipv4'] }
  ]
