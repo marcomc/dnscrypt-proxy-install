@@ -8,22 +8,8 @@ Pi-hole enhances privacy by blocking ads and trackers, but DNS resolvers can sti
 
 ## How to Run the Script
 
-You can fetch and run the script using either `curl` or `wget`.
-
-### Using curl
-
 ```sh
-curl -o dnscrypt-proxy-install.sh https://raw.githubusercontent.com/marcomc/dnscrypt-proxy-install/refs/heads/main/dnscrypt-proxy-install.sh
-chmod +x dnscrypt-proxy-install.sh
-sudo ./dnscrypt-proxy-install.sh
-```
-
-### Using wget
-
-```sh
-wget https://raw.githubusercontent.com/marcomc/dnscrypt-proxy-install/refs/heads/main/dnscrypt-proxy-install.sh
-chmod +x dnscrypt-proxy-install.sh
-sudo ./dnscrypt-proxy-install.sh
+sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/marcomc/dnscrypt-proxy-install/refs/heads/main/dnscrypt-proxy-install.sh)"
 ```
 
 ## Configuring Pi-hole
